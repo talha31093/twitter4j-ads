@@ -238,4 +238,33 @@ public class TwitterAdsStatApiImpl implements TwitterAdsStatApi {
 
         return metrics;
     }
+
+    @Override
+    public BaseAdsListResponseIterable<TwitterActiveEntitiesResponse> fetchActiveEntities(String accountId, TwitterEntityType twitterEntity, Collection<String> fundingInstrumentIds, Collection<String> campaignIds, Collection<String> lineItemIds, long startTime, long endTime) throws TwitterException {
+        TwitterAdUtil.ensureNotNull(accountId, "accountId");
+        TwitterAdUtil.ensureNotNull(startTime, "startTime");
+        TwitterAdUtil.ensureNotNull(endTime, "endTime");
+        String startTimeAsString = TwitterAdUtil.convertTimeToZuluFormatAndToUTC(startTime);
+        String endTimeAsString = TwitterAdUtil.convertTimeToZuluFormatAndToUTC(endTime);
+        String baseUrl = this.twitterAdsClient.getBaseAdsAPIUrl() + PREFIX_STATS_ACCOUNTS_URI + accountId + PATH_ACTIVE_ENTITIES;
+        List<HttpParameter> params = new ArrayList();
+        params.add(new HttpParameter("start_time", startTimeAsString));
+        params.add(new HttpParameter("end_time", endTimeAsString));
+        params.add(new HttpParameter("entity", twitterEntity.name()));
+
+        if (null != fundingInstrumentIds && !fundingInstrumentIds.isEmpty()) {
+            params.add(new HttpParameter("funding_instrument_ids", TwitterAdUtil.getCsv(fundingInstrumentIds)));
+        }
+        if (null != campaignIds && !campaignIds.isEmpty()) {
+            params.add(new HttpParameter("campaign_ids", TwitterAdUtil.getCsv(campaignIds)));
+        }
+        if (null != lineItemIds && !lineItemIds.isEmpty()) {
+            params.add(new HttpParameter("line_item_ids", TwitterAdUtil.getCsv(lineItemIds)));
+        }
+        Type type = (new TypeToken<BaseAdsListResponse<TwitterActiveEntitiesResponse>>() {
+        }).getType();
+
+        return twitterAdsClient.executeHttpListRequest(baseUrl, params, type);
+    }
+
 }

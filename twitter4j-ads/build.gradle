@@ -2,7 +2,7 @@ apply plugin: "java"
 apply plugin: 'maven-publish'
 
 group = 'com.sprinklr'
-version = '5.0'
+version = '7.0-SNAPSHOT'
 
 repositories {
     mavenCentral()

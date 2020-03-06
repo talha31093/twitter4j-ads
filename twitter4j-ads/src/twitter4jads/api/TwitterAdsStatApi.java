@@ -6,12 +6,7 @@ import twitter4jads.BaseAdsResponse;
 import twitter4jads.internal.models4j.TwitterException;
 import twitter4jads.models.Granularity;
 import twitter4jads.models.TwitterSegmentationType;
-import twitter4jads.models.ads.JobDetails;
-import twitter4jads.models.ads.Placement;
-import twitter4jads.models.ads.TwitterAdStatistics;
-import twitter4jads.models.ads.TwitterAuctionInsights;
-import twitter4jads.models.ads.TwitterEntityStatistics;
-import twitter4jads.models.ads.TwitterEntityType;
+import twitter4jads.models.ads.*;
 
 import java.util.Collection;
 import java.util.Optional;
@@ -92,4 +87,6 @@ public interface TwitterAdsStatApi {
                                                                         long endTime) throws TwitterException;
 
     BaseAdsResponse<JobDetails> deleteJob(String accountId, String jobId) throws TwitterException;
+
+    BaseAdsListResponseIterable<TwitterActiveEntitiesResponse> fetchActiveEntities(String accountId, TwitterEntityType twitterEntity, Collection<String> fundingInstrumentIds, Collection<String> campaignIds, Collection<String> lineItemIds, long startTime, long endTime) throws TwitterException;
 }
