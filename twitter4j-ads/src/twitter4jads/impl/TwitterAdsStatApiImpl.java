@@ -240,7 +240,7 @@ public class TwitterAdsStatApiImpl implements TwitterAdsStatApi {
     }
 
     @Override
-    public BaseAdsListResponseIterable<TwitterActiveEntitiesResponse> fetchActiveEntities(String accountId, TwitterEntityType twitterEntity, Collection<String> fundingInstrumentIds, Collection<String> campaignIds, Collection<String> lineItemIds, long startTime, long endTime) throws TwitterException {
+    public BaseAdsListResponseIterable<TwitterActiveEntity> fetchActiveEntities(String accountId, TwitterEntityType twitterEntity, Collection<String> fundingInstrumentIds, Collection<String> campaignIds, Collection<String> lineItemIds, long startTime, long endTime) throws TwitterException {
         TwitterAdUtil.ensureNotNull(accountId, "accountId");
         TwitterAdUtil.ensureNotNull(startTime, "startTime");
         TwitterAdUtil.ensureNotNull(endTime, "endTime");
@@ -261,7 +261,7 @@ public class TwitterAdsStatApiImpl implements TwitterAdsStatApi {
         if (null != lineItemIds && !lineItemIds.isEmpty()) {
             params.add(new HttpParameter("line_item_ids", TwitterAdUtil.getCsv(lineItemIds)));
         }
-        Type type = (new TypeToken<BaseAdsListResponse<TwitterActiveEntitiesResponse>>() {
+        Type type = (new TypeToken<BaseAdsListResponse<TwitterActiveEntity>>() {
         }).getType();
 
         return twitterAdsClient.executeHttpListRequest(baseUrl, params, type);

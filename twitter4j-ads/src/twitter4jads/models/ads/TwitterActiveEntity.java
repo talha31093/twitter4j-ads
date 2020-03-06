@@ -1,9 +1,11 @@
 package twitter4jads.models.ads;
 
 import com.google.gson.annotations.SerializedName;
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 
 import java.util.List;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class TwitterActiveEntity {
     @SerializedName("entity_id")
     private String entityId;
