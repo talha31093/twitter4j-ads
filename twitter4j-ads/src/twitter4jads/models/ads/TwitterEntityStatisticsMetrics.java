@@ -46,4 +46,12 @@ public class TwitterEntityStatisticsMetrics {
 
         return ALL_METRIC_GROUPS;
     }
+
+    /*
+    Later, when we have MEDIA_CREATIVE Data
+     */
+    public static Set<String> getMetricGroups() {
+        return ALL_METRIC_GROUPS;
+    }
+
 }

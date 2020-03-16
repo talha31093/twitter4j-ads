@@ -1,5 +1,9 @@
 package twitter4jads;
 
+import twitter4jads.models.TwitterSegmentationType;
+
+import java.util.Arrays;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -376,4 +380,13 @@ public interface TwitterAdsConstants {
     String GENDER_FEMALE_OLD_VALUE = "2";
     String GENDER_MALE_NEW_VALUE = "MALE";
     String GENDER_FEMALE_NEW_VALUE = "FEMALE";
+
+    String PARAM_COUNTRY = "country";
+    String PARAM_PLATFORM = "platform";
+    List<TwitterSegmentationType> COUNTRY_SEGMENTS = Arrays.asList(TwitterSegmentationType.CITIES,
+            TwitterSegmentationType.POSTAL_CODES,
+            TwitterSegmentationType.REGIONS);
+    List<TwitterSegmentationType> PLATFORM_SEGMENTS = Arrays.asList(TwitterSegmentationType.DEVICES,
+            TwitterSegmentationType.PLATFORM_VERSIONS);
+
 }

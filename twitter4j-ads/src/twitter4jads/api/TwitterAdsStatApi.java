@@ -55,7 +55,9 @@ public interface TwitterAdsStatApi {
      */
     BaseAdsResponse<JobDetails> createAsyncJob(String accountId, TwitterEntityType twitterEntityType, Collection<String> ids, long startTime,
                                                long endTime, boolean withDeleted, Granularity granularity, Placement placement,
-                                               Optional<TwitterSegmentationType> twitterSegmentationType) throws TwitterException;
+                                               Optional<TwitterSegmentationType> twitterSegmentationType,
+                                               String country,
+                                               String platform) throws TwitterException;
 
     /**
      * @param accountId            The identifier for the leveraged account.

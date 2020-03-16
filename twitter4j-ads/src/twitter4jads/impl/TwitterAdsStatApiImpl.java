@@ -105,7 +105,9 @@ public class TwitterAdsStatApiImpl implements TwitterAdsStatApi {
     @Override
     public BaseAdsResponse<JobDetails> createAsyncJob(String accountId, TwitterEntityType twitterEntityType, Collection<String> ids, long startTime,
                                                       long endTime, boolean withDeleted, Granularity granularity, Placement placement,
-                                                      Optional<TwitterSegmentationType> twitterSegmentationType) throws TwitterException {
+                                                      Optional<TwitterSegmentationType> twitterSegmentationType,
+                                                      String country,
+                                                      String platform) throws TwitterException {
         TwitterAdUtil.ensureNotNull(accountId, ACCOUNT_ID);
         TwitterAdUtil.ensureNotNull(startTime, "startTime");
         TwitterAdUtil.ensureNotNull(ids, "entityIds");
@@ -128,6 +130,11 @@ public class TwitterAdsStatApiImpl implements TwitterAdsStatApi {
         if (twitterSegmentationType != null && twitterSegmentationType.isPresent()) {
             segmentationType = twitterSegmentationType.get();
             params.add(new HttpParameter(PARAM_SEGMENTATION_TYPE, twitterSegmentationType.get().name()));
+            if (COUNTRY_SEGMENTS.contains(twitterSegmentationType.get())) {
+                params.add(new HttpParameter(PARAM_COUNTRY, country));
+            } else if (PLATFORM_SEGMENTS.contains(twitterSegmentationType.get())) {
+                params.add(new HttpParameter(PARAM_PLATFORM, platform));
+            }
         }
 
 
