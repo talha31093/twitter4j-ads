@@ -29,6 +29,7 @@ public interface TwitterAdsConstants {
     String PARAM_FUNDING_INSTRUMENT_IDS = "funding_instrument_ids";
     String PARAM_CAMPAIGN_IDS = "campaign_ids";
     String PARAM_LINE_ITEM_IDS = "line_item_ids";
+    String PARAM_ACCOUNT_IDS = "account_ids";
     String PARAM_LINE_ITEM_ID = "line_item_id";
     String PARAM_ACCOUNT_MEDIA_ID = "account_media_id";
     String PARAM_LANDING_URL = "landing_url";

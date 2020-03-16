@@ -24,7 +24,7 @@ public interface TwitterAdsAccountApi {
      * @throws TwitterException
      * @see <a href="https://dev.twitter.com/ads/reference/get/accounts">https://dev.twitter.com/ads/reference/get/accounts</a>
      */
-    BaseAdsListResponseIterable<AdAccount> getAllAccounts(Boolean withDeleted, Optional<AccountsSortByField> accountsSortByField, Optional<String> q) throws TwitterException;
+    BaseAdsListResponseIterable<AdAccount> getAllAccounts(Boolean withDeleted, Optional<AccountsSortByField> accountsSortByField, Optional<List<String>> accountIds, Optional<String> q) throws TwitterException;
 
     /**
      * @param accountId   The identifier for the leveraged account.

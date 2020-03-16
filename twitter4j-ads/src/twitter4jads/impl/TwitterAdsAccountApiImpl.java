@@ -3,6 +3,7 @@ package twitter4jads.impl;
 import com.google.common.collect.Lists;
 import com.google.gson.reflect.TypeToken;
 import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.lang3.StringUtils;
 import twitter4jads.BaseAdsListResponse;
 import twitter4jads.BaseAdsListResponseIterable;
 import twitter4jads.BaseAdsResponse;
@@ -39,11 +40,14 @@ public class TwitterAdsAccountApiImpl implements TwitterAdsAccountApi {
     }
 
     @Override
-    public BaseAdsListResponseIterable<AdAccount> getAllAccounts(Boolean withDeleted, Optional<AccountsSortByField> sortByField, Optional<String> q) throws TwitterException {
+    public BaseAdsListResponseIterable<AdAccount> getAllAccounts(Boolean withDeleted, Optional<AccountsSortByField> sortByField, Optional<List<String>> accountIds, Optional<String> q) throws TwitterException {
         final List<HttpParameter> params = new ArrayList<>();
         final String baseUrl = twitterAdsClient.getBaseAdsAPIUrl() + PREFIX_ACCOUNTS_URI;
         if (TwitterAdUtil.isNotNull(withDeleted)) {
             params.add(new HttpParameter(PARAM_WITH_DELETED, withDeleted));
+        }
+        if (accountIds != null && accountIds.isPresent()) {
+            params.add(new HttpParameter(PARAM_ACCOUNT_IDS, StringUtils.join(accountIds.get(), ",")));
         }
         if (q != null && q.isPresent()) {
             params.add(new HttpParameter(PARAM_Q, q.get()));
