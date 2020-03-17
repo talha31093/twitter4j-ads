@@ -53,8 +53,8 @@ public interface TwitterAdsStatApi {
      * @throws TwitterException
      * @see <a href="https://dev.twitter.com/ads/reference/1/post/stats/jobs/accounts/%3Aaccount_id">https://dev.twitter.com/ads/reference/1/post/stats/jobs/accounts/%3Aaccount_id</a>
      */
-    BaseAdsResponse<JobDetails> createAsyncJob(String accountId, TwitterEntityType twitterEntityType, Collection<String> ids, long startTime,
-                                               long endTime, boolean withDeleted, Granularity granularity, Placement placement,
+    BaseAdsResponse<JobDetails> createAsyncJob(String accountId, TwitterEntityType twitterEntityType, Collection<String> ids, String startTime,
+                                               String endTime, boolean withDeleted, Granularity granularity, Placement placement,
                                                Optional<TwitterSegmentationType> twitterSegmentationType,
                                                String country,
                                                String platform) throws TwitterException;
@@ -90,5 +90,5 @@ public interface TwitterAdsStatApi {
 
     BaseAdsResponse<JobDetails> deleteJob(String accountId, String jobId) throws TwitterException;
 
-    BaseAdsListResponseIterable<TwitterActiveEntity> fetchActiveEntities(String accountId, TwitterEntityType twitterEntity, Collection<String> fundingInstrumentIds, Collection<String> campaignIds, Collection<String> lineItemIds, long startTime, long endTime) throws TwitterException;
+    BaseAdsListResponseIterable<TwitterActiveEntity> fetchActiveEntities(String accountId, TwitterEntityType twitterEntity, Collection<String> fundingInstrumentIds, Collection<String> campaignIds, Collection<String> lineItemIds, String startTime, String endTime) throws TwitterException;
 }

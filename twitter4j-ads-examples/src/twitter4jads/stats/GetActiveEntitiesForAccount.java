@@ -15,7 +15,7 @@ public class GetActiveEntitiesForAccount extends BaseAdsTest {
         TwitterAdsStatApi statApi = twitterAdsInstance.getStatApi();
         BaseAdsListResponseIterable<TwitterActiveEntity> activeEntitiesResponseBaseAdsListResponseIterable =
                 statApi.fetchActiveEntities("18ce54k4rvf", TwitterEntityType.LINE_ITEM, null
-                , null, null,1578873600000l, 1579132800000l);
+                , null, null,"2020-01-13", "2020-01-16");
         System.out.println();
     }
 }

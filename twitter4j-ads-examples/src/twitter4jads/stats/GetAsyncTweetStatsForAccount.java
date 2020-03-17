@@ -20,8 +20,8 @@ public class GetAsyncTweetStatsForAccount extends BaseAdsTest {
     public static void main(String[] args) {
         TwitterAds twitterAdsInstance = getTwitterAdsInstance();
         TwitterAdsStatApi statApi = twitterAdsInstance.getStatApi();
-        long until = 0;
-        long since = 0;
+        String until = "2020-01-13";
+        String since = "2020-01-16";
         try {
             BaseAdsResponse<JobDetails> twitterAsyncJob = statApi.createAsyncJob("1b83s0", TwitterEntityType.CAMPAIGN, Lists.newArrayList("4u3mr"), since, until, Boolean.TRUE, Granularity.TOTAL, Placement.ALL_ON_TWITTER, null, null, null);
             BaseAdsListResponseIterable<JobDetails> jobExecutionDetails;
