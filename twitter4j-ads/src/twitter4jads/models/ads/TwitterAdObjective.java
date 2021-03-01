@@ -21,10 +21,10 @@ public enum TwitterAdObjective {
     LEAD_GENERATION("lead_generation", MetricGroup.ENGAGEMENT, MetricGroup.BILLING, MetricGroup.MOBILE_CONVERSION, MetricGroup.MEDIA,
                     MetricGroup.VIDEO, MetricGroup.WEB_CONVERSION),
 
-    VIDEO_VIEWS_PREROLL("video_views_preroll", MetricGroup.ENGAGEMENT, MetricGroup.BILLING, MetricGroup.MOBILE_CONVERSION, MetricGroup.MEDIA,
+    PREROLL_VIEWS("preroll_views", MetricGroup.ENGAGEMENT, MetricGroup.BILLING, MetricGroup.MOBILE_CONVERSION, MetricGroup.MEDIA,
             MetricGroup.VIDEO, MetricGroup.WEB_CONVERSION),
 
-    TWEET_ENGAGEMENTS("tweet_engagements", MetricGroup.ENGAGEMENT, MetricGroup.BILLING, MetricGroup.MOBILE_CONVERSION, MetricGroup.MEDIA,
+    ENGAGEMENTS("engagements", MetricGroup.ENGAGEMENT, MetricGroup.BILLING, MetricGroup.MOBILE_CONVERSION, MetricGroup.MEDIA,
             MetricGroup.VIDEO, MetricGroup.WEB_CONVERSION),
 
     QUALIFIED_IMPRESSIONS("qualified_impressions", MetricGroup.ENGAGEMENT, MetricGroup.BILLING, MetricGroup.MOBILE_CONVERSION, MetricGroup.MEDIA,
@@ -37,7 +37,7 @@ public enum TwitterAdObjective {
                    MetricGroup.WEB_CONVERSION),
     WEBSITE_CONVERSIONS("website_conversions", MetricGroup.ENGAGEMENT, MetricGroup.BILLING, MetricGroup.MOBILE_CONVERSION, MetricGroup.MEDIA,
                         MetricGroup.VIDEO, MetricGroup.WEB_CONVERSION),
-    AWARENESS("awareness", MetricGroup.ENGAGEMENT, MetricGroup.BILLING, MetricGroup.MOBILE_CONVERSION, MetricGroup.MEDIA, MetricGroup.VIDEO,
+    REACH("reach", MetricGroup.ENGAGEMENT, MetricGroup.BILLING, MetricGroup.MOBILE_CONVERSION, MetricGroup.MEDIA, MetricGroup.VIDEO,
               MetricGroup.WEB_CONVERSION);
 
     private MetricGroup[] metricGroups;

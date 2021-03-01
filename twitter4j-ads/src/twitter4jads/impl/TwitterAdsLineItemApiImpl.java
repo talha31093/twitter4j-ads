@@ -467,7 +467,7 @@ public class TwitterAdsLineItemApiImpl implements TwitterAdsLineItemApi {
             params.add(new HttpParameter(PARAM_OBJECTIVE, objective.get()));
 
             // Twitter Audience Platform is supported for these objectives only
-            if (TwitterAdUtil.TWEET_ENGAGEMENTS.equals(objective.get()) || TwitterAdUtil.VIDEO_VIEWS.equals(objective.get()) ||
+            if (TwitterAdUtil.ENGAGEMENTS.equals(objective.get()) || TwitterAdUtil.VIDEO_VIEWS.equals(objective.get()) ||
                     TwitterAdUtil.WEBSITE_CLICKS.equals(objective.get())) {
                 if (advertiserDomain != null && advertiserDomain.isPresent()) {
                     params.add(new HttpParameter(PARAM_ADVERTISER_DOMAIN, advertiserDomain.get()));
