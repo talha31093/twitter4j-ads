@@ -99,7 +99,7 @@ public interface TwitterAdsTargetingApi {
      * @throws TwitterException
      * @see <a href="https://dev.twitter.com/ads/reference/get/targeting_criteria/locations">https://dev.twitter.com/ads/reference/get/targeting_criteria/locations</a>
      */
-    BaseAdsListResponseIterable<TargetingLocation> getAllTargetingLocations(Optional<LocationType> locationType, String q,
+    BaseAdsListResponseIterable<TargetingLocation> getAllTargetingLocations(Optional<twitter4jads.internal.models4j.LocationType> locationType, String q,
                                                                             String countryCode, Optional<Integer> count) throws TwitterException;
 
     /**

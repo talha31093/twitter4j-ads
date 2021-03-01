@@ -1,5 +1,9 @@
 package twitter4jads;
 
+import twitter4jads.models.TwitterSegmentationType;
+
+import java.util.Arrays;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -9,7 +13,7 @@ import java.util.concurrent.TimeUnit;
  */
 public interface TwitterAdsConstants {
 
-    String CURRENT_VERSION = "6";
+    String CURRENT_VERSION = "8";
 
     String PREFIX_ACCOUNTS_URI = CURRENT_VERSION + "/accounts/";
     String AUTHENTICATED_USER_ACCESS = "/authenticated_user_access";
@@ -25,6 +29,7 @@ public interface TwitterAdsConstants {
     String PARAM_FUNDING_INSTRUMENT_IDS = "funding_instrument_ids";
     String PARAM_CAMPAIGN_IDS = "campaign_ids";
     String PARAM_LINE_ITEM_IDS = "line_item_ids";
+    String PARAM_ACCOUNT_IDS = "account_ids";
     String PARAM_LINE_ITEM_ID = "line_item_id";
     String PARAM_ACCOUNT_MEDIA_ID = "account_media_id";
     String PARAM_LANDING_URL = "landing_url";
@@ -376,4 +381,13 @@ public interface TwitterAdsConstants {
     String GENDER_FEMALE_OLD_VALUE = "2";
     String GENDER_MALE_NEW_VALUE = "MALE";
     String GENDER_FEMALE_NEW_VALUE = "FEMALE";
+
+    String PARAM_COUNTRY = "country";
+    String PARAM_PLATFORM = "platform";
+    List<TwitterSegmentationType> COUNTRY_SEGMENTS = Arrays.asList(TwitterSegmentationType.CITIES,
+            TwitterSegmentationType.POSTAL_CODES,
+            TwitterSegmentationType.REGIONS);
+    List<TwitterSegmentationType> PLATFORM_SEGMENTS = Arrays.asList(TwitterSegmentationType.DEVICES,
+            TwitterSegmentationType.PLATFORM_VERSIONS);
+
 }

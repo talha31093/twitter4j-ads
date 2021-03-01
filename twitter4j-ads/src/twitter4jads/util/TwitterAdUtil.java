@@ -21,6 +21,7 @@ import java.util.concurrent.TimeUnit;
 
 import static com.google.common.collect.Sets.newHashSet;
 import static org.apache.commons.collections.SetUtils.unmodifiableSet;
+import static twitter4jads.models.ads.TwitterAdObjective.PREROLL_VIEWS;
 import static twitter4jads.models.ads.TwitterAdObjective.WEBSITE_CONVERSIONS;
 import static twitter4jads.util.TwitterAdHttpUtils.createFromResponseHeader;
 
@@ -32,14 +33,14 @@ import static twitter4jads.util.TwitterAdHttpUtils.createFromResponseHeader;
 public final class TwitterAdUtil {
 
     public static final String FOLLOWERS = "FOLLOWERS";
-    public static final String TWEET_ENGAGEMENTS = "TWEET_ENGAGEMENTS";
+    public static final String ENGAGEMENTS = "ENGAGEMENTS";
     public static final String VIDEO_VIEWS = "VIDEO_VIEWS";
     public static final String WEBSITE_CLICKS = "WEBSITE_CLICKS";
     public static final String VIDEO_VIEWS_PREROLL = "VIDEO_VIEWS_PREROLL";
     public static final String APP_ENGAGEMENTS = "APP_ENGAGEMENTS";
     public static final String APP_INSTALLS = "APP_INSTALLS";
     public static final Set<TwitterAdObjective> TAP_SUPPORTED_OBJECTIVES =
-        unmodifiableSet(newHashSet(APP_INSTALLS, APP_ENGAGEMENTS, VIDEO_VIEWS_PREROLL, WEBSITE_CLICKS, WEBSITE_CONVERSIONS));
+        unmodifiableSet(newHashSet(APP_INSTALLS, APP_ENGAGEMENTS, PREROLL_VIEWS, WEBSITE_CLICKS, WEBSITE_CONVERSIONS));
 
     public static final Set<TwitterAdObjective> TARGET_CPA_SUPPORTED_OBJECTIVES = unmodifiableSet(newHashSet(WEBSITE_CONVERSIONS));
     public static final String UTC_TMZ = "UTC";

@@ -6,12 +6,7 @@ import twitter4jads.BaseAdsResponse;
 import twitter4jads.internal.models4j.TwitterException;
 import twitter4jads.models.Granularity;
 import twitter4jads.models.TwitterSegmentationType;
-import twitter4jads.models.ads.JobDetails;
-import twitter4jads.models.ads.Placement;
-import twitter4jads.models.ads.TwitterAdStatistics;
-import twitter4jads.models.ads.TwitterAuctionInsights;
-import twitter4jads.models.ads.TwitterEntityStatistics;
-import twitter4jads.models.ads.TwitterEntityType;
+import twitter4jads.models.ads.*;
 
 import java.util.Collection;
 import java.util.Optional;
@@ -58,9 +53,11 @@ public interface TwitterAdsStatApi {
      * @throws TwitterException
      * @see <a href="https://dev.twitter.com/ads/reference/1/post/stats/jobs/accounts/%3Aaccount_id">https://dev.twitter.com/ads/reference/1/post/stats/jobs/accounts/%3Aaccount_id</a>
      */
-    BaseAdsResponse<JobDetails> createAsyncJob(String accountId, TwitterEntityType twitterEntityType, Collection<String> ids, long startTime,
-                                               long endTime, boolean withDeleted, Granularity granularity, Placement placement,
-                                               Optional<TwitterSegmentationType> twitterSegmentationType) throws TwitterException;
+    BaseAdsResponse<JobDetails> createAsyncJob(String accountId, TwitterEntityType twitterEntityType, Collection<String> ids, String startTime,
+                                               String endTime, boolean withDeleted, Granularity granularity, Placement placement,
+                                               Optional<TwitterSegmentationType> twitterSegmentationType,
+                                               String country,
+                                               String platform) throws TwitterException;
 
     /**
      * @param accountId            The identifier for the leveraged account.
@@ -92,4 +89,6 @@ public interface TwitterAdsStatApi {
                                                                         long endTime) throws TwitterException;
 
     BaseAdsResponse<JobDetails> deleteJob(String accountId, String jobId) throws TwitterException;
+
+    BaseAdsListResponseIterable<TwitterActiveEntity> fetchActiveEntities(String accountId, TwitterEntityType twitterEntity, Collection<String> fundingInstrumentIds, Collection<String> campaignIds, Collection<String> lineItemIds, String startTime, String endTime) throws TwitterException;
 }

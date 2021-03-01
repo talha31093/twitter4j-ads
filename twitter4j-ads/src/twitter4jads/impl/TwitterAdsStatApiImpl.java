@@ -103,31 +103,36 @@ public class TwitterAdsStatApiImpl implements TwitterAdsStatApi {
     }
 
     @Override
-    public BaseAdsResponse<JobDetails> createAsyncJob(String accountId, TwitterEntityType twitterEntityType, Collection<String> ids, long startTime,
-                                                      long endTime, boolean withDeleted, Granularity granularity, Placement placement,
-                                                      Optional<TwitterSegmentationType> twitterSegmentationType) throws TwitterException {
+    public BaseAdsResponse<JobDetails> createAsyncJob(String accountId, TwitterEntityType twitterEntityType, Collection<String> ids, String startTime,
+                                                      String endTime, boolean withDeleted, Granularity granularity, Placement placement,
+                                                      Optional<TwitterSegmentationType> twitterSegmentationType,
+                                                      String country,
+                                                      String platform) throws TwitterException {
         TwitterAdUtil.ensureNotNull(accountId, ACCOUNT_ID);
         TwitterAdUtil.ensureNotNull(startTime, "startTime");
         TwitterAdUtil.ensureNotNull(ids, "entityIds");
         TwitterAdUtil.ensureNotNull(placement, "placement");
 
-        final String startTimeAsString = TwitterAdUtil.convertTimeToZuluFormatAndToUTC(startTime);
-        final String endTimeAsString = TwitterAdUtil.convertTimeToZuluFormatAndToUTC(endTime);
         final String baseUrl = twitterAdsClient.getBaseAdsAPIUrl() + PREFIX_STATS_JOB_ACCOUNTS_URI + accountId;
 
         final List<HttpParameter> params = new ArrayList<>();
         params.add(new HttpParameter(GRANULARITY, granularity.toString()));
-        params.add(new HttpParameter(PARAM_START_TIME, startTimeAsString));
+        params.add(new HttpParameter(PARAM_START_TIME, startTime));
         params.add(new HttpParameter(PARAM_ENTITY_TYPE, twitterEntityType.name()));
 
-        if (TwitterAdUtil.isNotNullOrEmpty(endTimeAsString)) {
-            params.add(new HttpParameter(PARAM_END_TIME, endTimeAsString));
+        if (TwitterAdUtil.isNotNullOrEmpty(endTime)) {
+            params.add(new HttpParameter(PARAM_END_TIME, endTime));
         }
 
         TwitterSegmentationType segmentationType = null;
         if (twitterSegmentationType != null && twitterSegmentationType.isPresent()) {
             segmentationType = twitterSegmentationType.get();
             params.add(new HttpParameter(PARAM_SEGMENTATION_TYPE, twitterSegmentationType.get().name()));
+            if (COUNTRY_SEGMENTS.contains(twitterSegmentationType.get())) {
+                params.add(new HttpParameter(PARAM_COUNTRY, country));
+            } else if (PLATFORM_SEGMENTS.contains(twitterSegmentationType.get())) {
+                params.add(new HttpParameter(PARAM_PLATFORM, platform));
+            }
         }
 
 
@@ -238,4 +243,31 @@ public class TwitterAdsStatApiImpl implements TwitterAdsStatApi {
 
         return metrics;
     }
+
+    @Override
+    public BaseAdsListResponseIterable<TwitterActiveEntity> fetchActiveEntities(String accountId, TwitterEntityType twitterEntity, Collection<String> fundingInstrumentIds, Collection<String> campaignIds, Collection<String> lineItemIds, String startTime, String endTime) throws TwitterException {
+        TwitterAdUtil.ensureNotNull(accountId, "accountId");
+        TwitterAdUtil.ensureNotNull(startTime, "startTime");
+        TwitterAdUtil.ensureNotNull(endTime, "endTime");
+        String baseUrl = this.twitterAdsClient.getBaseAdsAPIUrl() + PREFIX_STATS_ACCOUNTS_URI + accountId + PATH_ACTIVE_ENTITIES;
+        List<HttpParameter> params = new ArrayList();
+        params.add(new HttpParameter("start_time", startTime));
+        params.add(new HttpParameter("end_time", endTime));
+        params.add(new HttpParameter("entity", twitterEntity.name()));
+
+        if (null != fundingInstrumentIds && !fundingInstrumentIds.isEmpty()) {
+            params.add(new HttpParameter("funding_instrument_ids", TwitterAdUtil.getCsv(fundingInstrumentIds)));
+        }
+        if (null != campaignIds && !campaignIds.isEmpty()) {
+            params.add(new HttpParameter("campaign_ids", TwitterAdUtil.getCsv(campaignIds)));
+        }
+        if (null != lineItemIds && !lineItemIds.isEmpty()) {
+            params.add(new HttpParameter("line_item_ids", TwitterAdUtil.getCsv(lineItemIds)));
+        }
+        Type type = (new TypeToken<BaseAdsListResponse<TwitterActiveEntity>>() {
+        }).getType();
+
+        return twitterAdsClient.executeHttpListRequest(baseUrl, params, type);
+    }
+
 }

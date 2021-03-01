@@ -124,7 +124,7 @@ public class TwitterAdStatisticsMetrics {
         PREROLL_VIEWS("preroll_views", MetricClass.ENGAGEMENT, MetricClass.MEDIA, MetricClass.MOBILE_APP_PROMOTION, MetricClass.SPEND,
                 MetricClass.TWITTER_AUDIENCE_PLATFORM, MetricClass.VIDEO, MetricClass.OTHER),
 
-        TWEET_ENGAGEMENTS("tweet_engagements", MetricClass.CONVERSION, MetricClass.ENGAGEMENT, MetricClass.MEDIA, MetricClass.SPEND,
+        ENGAGEMENTS("engagements", MetricClass.CONVERSION, MetricClass.ENGAGEMENT, MetricClass.MEDIA, MetricClass.SPEND,
                 MetricClass.VIDEO, MetricClass.OTHER),
 
         QUALIFIED_VIEWS("qualified_views", MetricClass.ENGAGEMENT, MetricClass.MEDIA, MetricClass.SPEND, MetricClass.VIDEO, MetricClass.OTHER),

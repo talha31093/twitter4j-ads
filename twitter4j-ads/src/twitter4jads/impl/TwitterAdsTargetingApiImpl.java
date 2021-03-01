@@ -111,7 +111,7 @@ public class TwitterAdsTargetingApiImpl implements TwitterAdsTargetingApi {
     }
 
     @Override
-    public BaseAdsListResponseIterable<twitter4jads.models.ads.TargetingLocation> getAllTargetingLocations(Optional<LocationType> locationType, String q,
+    public BaseAdsListResponseIterable<twitter4jads.models.ads.TargetingLocation> getAllTargetingLocations(Optional<twitter4jads.internal.models4j.LocationType> locationType, String q,
                                                                                                            String countryCode, Optional<Integer> count)
             throws TwitterException {
         List<HttpParameter> params = validateTargetingLocationParameters(locationType, q, countryCode, count);
@@ -688,7 +688,7 @@ public class TwitterAdsTargetingApiImpl implements TwitterAdsTargetingApi {
         return params;
     }
 
-    private List<HttpParameter> validateTargetingLocationParameters(final Optional<LocationType> locationType,
+    private List<HttpParameter> validateTargetingLocationParameters(final Optional<twitter4jads.internal.models4j.LocationType> locationType,
                                                                     final String q, final String countryCode,
                                                                     final Optional<Integer> count) {
 
